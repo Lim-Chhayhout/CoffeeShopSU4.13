@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org">
+
+
+<head th:replace="~{base :: head}"></head>
+
+<body>
+    <!-- Navbar Start -->
+    <div th:replace="~{base :: navbar}"></div>
+    <!-- Navbar End -->
+
+
+    <!-- Page Header Start -->
+    <div th:replace="~{base :: header(text='Booked Succcess')}"></div>
+    <!-- Page Header End -->
+
+	<!-- Success Start -->
+	<div class="container py-5">
+	    <div class="row justify-content-center">
+	        <div class="col-lg-8">
+	            <div class="text-center mb-5">
+	                <p class="text-muted">Thank you for choosing our coffee shop. Your reservation details are below.</p>
+	            </div>
+
+				<div class="p-5 rounded" style="background: #fdf4e7; border-radius: 20px;">
+				    <div class="py-2">
+				        <div class="d-flex justify-content-between mb-3">
+				            <span class="text-muted">Name</span>
+				            <span class="font-weight-bold" th:text="${booked.name}"></span>
+				        </div>
+
+				        <div class="d-flex justify-content-between mb-3">
+				            <span class="text-muted">Phone Number</span>
+				            <span class="font-weight-bold" th:text="${booked.phoneNumber}"></span>
+				        </div>
+
+				        <div class="d-flex justify-content-between mb-3">
+				            <span class="text-muted">Email</span>
+				            <span class="font-weight-bold" th:text="${booked.email}"></span>
+				        </div>
+
+				        <div class="d-flex justify-content-between mb-3">
+				            <span class="text-muted">Date</span>
+				            <span class="font-weight-bold" th:text="${booked.date}"></span>
+				        </div>
+
+				        <div class="d-flex justify-content-between mb-3">
+				            <span class="text-muted">Time</span>
+				            <span class="font-weight-bold" th:text="${booked.time}"></span>
+				        </div>
+
+				        <div class="d-flex justify-content-between mb-3">
+				            <span class="text-muted">People</span>
+				            <span class="font-weight-bold" th:text="${booked.person}"></span>
+				        </div>
+				    </div>
+
+				</div>
+	            <div class="text-center mt-5">
+	                <a href="/" class="btn btn-primary px-5 py-3 font-weight-bold" style="border-radius:50px;">
+	                    Back to Home
+	                </a>
+	            </div>
+
+	        </div>
+	    </div>
+	</div>
+    <!-- Success End -->
+
+    <!-- Footer Start -->
+   	<div th:replace="~{base :: footer}"></div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <div th:replace="~{base :: script}"></div>
+</body>
+
+</html>
