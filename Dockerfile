@@ -1,9 +1,20 @@
-FROM ubuntu.latest AS build
-RUN apt-get update
-RUN apt-get install openjdk-21-jdk -y
+# ---------- BUILD STAGE ----------
+FROM ubuntu:latest AS build
 
+RUN apt-get update && \
+    apt-get install -y openjdk-17-jdk curl unzip
+
+WORKDIR /app
 COPY . .
+
 RUN ./gradlew bootJar --no-daemon
 
-FROM openjdk:21-jdk-slim
+# ---------- RUNTIME STAGE ----------
+FROM openjdk:17-jdk-slim
+
+WORKDIR /app
 EXPOSE 8080
+
+COPY --from=build /app/build/libs/*.jar app.jar
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
