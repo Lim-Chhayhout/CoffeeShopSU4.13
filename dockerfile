@@ -1,11 +1,19 @@
+# Use official Java 21 image
 FROM eclipse-temurin:21-jdk
 
 WORKDIR /app
 
+# Copy project files
 COPY . .
 
-RUN chmod +x gradlew && ./gradlew clean build -x test
+# Make gradlew executable
+RUN chmod +x gradlew
 
+# Build JAR, skip tests
+RUN ./gradlew clean build -x test
+
+# Expose default port
 EXPOSE 8080
 
-CMD ["java", "-jar", "build/libs/*.jar"]
+# Run the JAR
+CMD ["java", "-jar", "build/libs/coffee-shop-telegram-bot-0.0.1-SNAPSHOT.jar"]
